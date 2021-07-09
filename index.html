@@ -62,7 +62,7 @@
         <script>
 			var a,b,c,d,t1=0,t2=0,t3=0;
 			const save=()=>{
-				if(t1!=0 && t2!=0 && t3!=0){
+				if(!(t1==0 && t2==0 && t3==0)){
 					var doc = new jsPDF('p', 'pt', 'a4');
 					var tbl = $('#tab').clone();
 					tbl.find('tr th:nth-child(3), tr td:nth-child(3)').remove();
