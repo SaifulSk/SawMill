@@ -19,6 +19,10 @@
             <!-- User Form -->
             <div class="row">
 				<h2 class="m-3">Saw Mill Calculator</h2>
+				<div class="custom-control custom-switch m-3">
+					<input type="checkbox" class="custom-control-input" id="switch1" name="example" onchange=changeView()>
+					<label class="custom-control-label" for="switch1">Change View</label>
+				</div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <form action="javascript:void(0)">
                         <div class="form-group row up-arrow">
@@ -27,6 +31,8 @@
                         </div>
                         <div class="form-group row down-arrow">
                         </div>
+						<div class="form-group row radios">Hello
+						</div>
                         <div class="form-group row mt-3">                                       
                             <div class="col-xs-1">
                                 <input class="form-control font-weight-bold text-danger" type="text" id="kali" disabled/>
@@ -61,7 +67,7 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.js"></script>
 
         <script>
-			var a,b,c,d,t1=0,t2=0,t3=0;
+			var a,b,c,d,t1=0,t2=0,t3=0,vu=0;
 			const save=()=>{
 				if(!(t1==0 && t2==0 && t3==0)){
 					var doc = new jsPDF('p', 'pt', 'a4');
@@ -81,9 +87,13 @@
 			}
 			const reset=()=>{
 				$("#tab").html('<tr class="bg bg-success text-white"><th>Measurement</th><th>Kali</th><th>Delete</th></tr>');
-				t1=t2=t3=0;
+				t1=t2=t3=vu=0;
 				$('#totv').html('0-0-0');
 				$('#pdf').hide();
+				$('.up-arrow').hide();
+				$('.options').hide();
+				$('.down-arrow').hide();
+				$('.radios').show();
 			}
             const updown=(i,t)=>{
                 var s="#"+i,lb=0,ub;
@@ -104,13 +114,13 @@
                 }
                 if((inpval!=lb && t<0) || (inpval!=ub && t>0))
                     $(s).val((parseInt(inpval)+t));
-                setKali();
+                setKali(1);
             }
-            const setKali=()=>{
-                a=$('#1').val();
-                b=$('#2').val();
-                c=$('#3').val();
-                d=$('#4').val();
+            const setKali=(view)=>{
+                a=(view==1)?$('#1').val():$("input[name='r1']").val();
+                b=(view==1)?$('#2').val():$("input[name='r2']").val();
+                c=(view==1)?$('#3').val():$("input[name='r3']").val();
+                d=(view==1)?$('#4').val():$("input[name='r4']").val();
 				var arr=[
 						[
 							[
@@ -581,7 +591,25 @@
 				else
 					$('#pdf').show();
 			}
-            $(document).ready(function(){
+            const changeView=()=>{
+				if(vu==1)
+					vu=0;
+				else
+					vu=1;
+				if(vu==0){
+					$('.up-arrow').hide();
+					$('.options').hide();
+					$('.down-arrow').hide();
+					$('.radios').show();
+				}
+				else{
+					$('.radios').hide();
+					$('.up-arrow').show();
+					$('.options').show();
+					$('.down-arrow').show();
+				}
+			}
+			$(document).ready(function(){
 				reset();
 				$("#kali").val("0-0-0");
                 for(var i=1;i<=4;i++){
@@ -604,10 +632,25 @@
                         for(var c4=0;c4<=11;c4++)
                             s=s+'<option value='+c4+'>'+c4+'</option>';
                     }
-                    $(".options").append('<div class="col-xs-2 ml-1 mr-1"><select class="col-xs-6 form-control border border-dark font-weight-bold" onchange=setKali() id='+i+'>'+s+'</select></div>');
+                    $(".options").append('<div class="col-xs-2 ml-1 mr-1"><select class="col-xs-6 form-control border border-dark font-weight-bold" onchange=setKali(1) id='+i+'>'+s+'</select></div>');
                     if(i==2){
                         $(".options").append('<i class="fa fa-times mt-2 ml-1 mr-1"></i>');
                     }
+
+					// <table class="table">
+					// 	<tr class="alert alert-success">
+					// 		<td><label class="radio-inline"><input type="radio" name="optradio" checked>1</label><label class="radio-inline"><input type="radio" name="optradio">2</label><label class="radio-inline"><input type="radio" name="optradio">3</label></td>
+					// 	</tr>
+					// 	<tr class="alert alert-danger">
+					// 		<td><label class="radio-inline"><input type="radio" name="optradio" checked>1</label><label class="radio-inline"><input type="radio" name="optradio">2</label><label class="radio-inline"><input type="radio" name="optradio">3</label></td>
+					// 	</tr>
+					// 	<tr class="alert alert-info">
+					// 		<td><label class="radio-inline"><input type="radio" name="optradio" checked>1</label><label class="radio-inline"><input type="radio" name="optradio">2</label><label class="radio-inline"><input type="radio" name="optradio">3</label></td>
+					// 	</tr>
+					// 	<tr class="alert alert-warning">
+					// 		<td><label class="radio-inline"><input type="radio" name="optradio" checked>1</label><label class="radio-inline"><input type="radio" name="optradio">2</label><label class="radio-inline"><input type="radio" name="optradio">3</label></td>
+					// 	</tr>
+					// </table>
                 }
             })
             
