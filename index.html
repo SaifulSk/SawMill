@@ -95,6 +95,11 @@
 				$('.down-arrow').hide();
 				$('.radios').show();
 				$('#switch1').prop("checked", false);
+				$('#kali').val('0-0-0');
+				$('#1').val(1);
+				$('#2').val(0);
+				$('#3').val(0);
+				$('#4').val(0);
 			}
             const updown=(i,t)=>{
                 var s="#"+i,lb=0,ub;
@@ -611,33 +616,42 @@
 				}
 			}
 			$(document).ready(function(){
-				reset();
-				$("#kali").val("0-0-0");
+				var rops="";
                 for(var i=1;i<=4;i++){
                     $(".up-arrow").append('<div class="col-xs-3 ml-4 mr-4" onclick=updown('+i+',1)><i class="fa fa-arrow-up" style="font-size:24px"></i></div>');
                     $(".down-arrow").append('<div class="col-xs-3 ml-4 mr-4" onclick=updown('+i+',-1)><i class="fa fa-arrow-down" style="font-size:24px"></i></div>');
-                    var s=""
+                    var s="";
+					rops=rops+'<tr class="alert alert-'+((i%2==0)?'success':'warning')+'"><td>';
                     if(i==1){
-                        for(var c1=1;c1<=10;c1++)
+                        for(var c1=1;c1<=10;c1++){
                             s=s+'<option value='+c1+'>'+c1+'</option>';
+							rops=rops+'<label class="radio-inline mr-2"><input type="radio" name="r1">'+c1+'</label>';
+						}
                     }
                     if(i==2){
-                        for(var c2=0;c2<=9;c2+=3)
+                        for(var c2=0;c2<=9;c2+=3){
                             s=s+'<option value='+c2+'>'+c2+'</option>';
+							rops=rops+'<label class="radio-inline mr-2"><input type="radio" name="r2">'+c2+'</label>';
+						}
                     }
                     if(i==3){
-                        for(var c3=0;c3<=6;c3++)
+                        for(var c3=0;c3<=6;c3++){
                             s=s+'<option value='+c3+'>'+c3+'</option>';
+							rops=rops+'<label class="radio-inline mr-2"><input type="radio" name="r3">'+c3+'</label>';
+						}
                     }
                     if(i==4){
-                        for(var c4=0;c4<=11;c4++)
+                        for(var c4=0;c4<=11;c4++){
                             s=s+'<option value='+c4+'>'+c4+'</option>';
+							rops=rops+'<label class="radio-inline mr-2"><input type="radio" name="r4">'+c4+'</label>';
+						}
                     }
+					rops=rops+'</td></tr>';
                     $(".options").append('<div class="col-xs-2 ml-1 mr-1"><select class="col-xs-6 form-control border border-dark font-weight-bold" onchange=setKali(1) id='+i+'>'+s+'</select></div>');
                     if(i==2){
                         $(".options").append('<i class="fa fa-times mt-2 ml-1 mr-1"></i>');
                     }
-
+					
 					// <table class="table">
 					// 	<tr class="alert alert-success">
 					// 		<td><label class="radio-inline"><input type="radio" name="optradio" checked>1</label><label class="radio-inline"><input type="radio" name="optradio">2</label><label class="radio-inline"><input type="radio" name="optradio">3</label></td>
@@ -653,6 +667,8 @@
 					// 	</tr>
 					// </table>
                 }
+				$(".radios").append('<table class="table text-center">'+rops+'</table>');
+				reset();
             })
             
         </script>
