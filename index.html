@@ -18,7 +18,7 @@
         <div class="container">
             <!-- User Form -->
             <div class="row">
-				<h2 class="m-3">Saw Mill Calculator</h2>
+				<h3 class="m-3">Saw Mill Calculator</h3>
 				<div class="custom-control custom-switch m-3">
 					<input type="checkbox" class="custom-control-input" id="switch1" name="example" onchange=changeView()>
 					<label class="custom-control-label" for="switch1">Change View</label>
@@ -94,6 +94,7 @@
 				$('.options').hide();
 				$('.down-arrow').hide();
 				$('.radios').show();
+				$('#switch1').prop("checked", false);
 			}
             const updown=(i,t)=>{
                 var s="#"+i,lb=0,ub;
