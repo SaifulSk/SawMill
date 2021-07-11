@@ -127,10 +127,10 @@
                 setKali(1);
             }
             const setKali=(view)=>{
-                a=(view==1)?$('#1').val():$("input[name='r1']").val();
-                b=(view==1)?$('#2').val():$("input[name='r2']").val();
-                c=(view==1)?$('#3').val():$("input[name='r3']").val();
-                d=(view==1)?$('#4').val():$("input[name='r4']").val();
+                a=(view==1)?$('#1').val():$("input[name='r1']:checked").val();
+                b=(view==1)?$('#2').val():$("input[name='r2']:checked").val();
+                c=(view==1)?$('#3').val():$("input[name='r3']:checked").val();
+                d=(view==1)?$('#4').val():$("input[name='r4']:checked").val();
 				var arr=[
 						[
 							[
@@ -611,13 +611,22 @@
 					$('.options').hide();
 					$('.down-arrow').hide();
 					$('.radios').show();
+					$('#1').val(1);
+					$('#2').val(0);
+					$('#3').val(0);
+					$('#4').val(0);
 				}
 				else{
 					$('.radios').hide();
 					$('.up-arrow').show();
 					$('.options').show();
 					$('.down-arrow').show();
+					$("input[name='r1']")[0].checked=true;
+					$("input[name='r2']")[0].checked=true;
+					$("input[name='r3']")[0].checked=true;
+					$("input[name='r4']")[0].checked=true;
 				}
+				$("#kali").val('0-0-0');
 			}
 			$(document).ready(function(){
 				var rops="";
@@ -629,25 +638,25 @@
                     if(i==1){
                         for(var c1=1;c1<=10;c1++){
                             s=s+'<option value='+c1+'>'+c1+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r1"> '+c1+'</label>';
+							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r1" onclick=setKali(2) value="'+c1+'"> '+c1+'</label>';
 						}
                     }
                     if(i==2){
                         for(var c2=0;c2<=9;c2+=3){
                             s=s+'<option value='+c2+'>'+c2+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r2"> '+c2+'</label>';
+							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r2" onclick=setKali(2) value="'+c2+'"> '+c2+'</label>';
 						}
                     }
                     if(i==3){
                         for(var c3=0;c3<=6;c3++){
                             s=s+'<option value='+c3+'>'+c3+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r3"> '+c3+'</label>';
+							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r3" onclick=setKali(2) value="'+c3+'"> '+c3+'</label>';
 						}
                     }
                     if(i==4){
                         for(var c4=0;c4<=11;c4++){
                             s=s+'<option value='+c4+'>'+c4+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r4"> '+c4+'</label>';
+							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r4" onclick=setKali(2) value="'+c4+'"> '+c4+'</label>';
 						}
                     }
 					rops=rops+'</td></tr>';
