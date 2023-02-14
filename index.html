@@ -29,9 +29,9 @@
 	    input[type="radio"] {
 		display: none;
 	    }		
-/* 	    input[type="radio"]:checked+label {
+	    input[type="radio"]:checked+label {
 		background: #dc3545;
-	    } */
+	    }
         </style>
     </head>
     <body>
@@ -659,25 +659,25 @@
                     if(i==1){
                         for(var c1=1;c1<=10;c1++){
                             s=s+'<option value='+c1+'>'+c1+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r1" onclick=setKali(2) value="'+c1+'"> '+c1+'</label>';
+							rops=rops+'<input type="radio" name="r1" value="'+c1+'"> <label class="radio-inline mr-1 font-weight-bold" onclick=setKali(2)>'+c1+'</label>';
 						}
                     }
                     if(i==2){
                         for(var c2=0;c2<=9;c2+=3){
                             s=s+'<option value='+c2+'>'+c2+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r2" onclick=setKali(2) value="'+c2+'"> '+c2+'</label>';
+							rops=rops+'<input type="radio" name="r2" value="'+c2+'">  <label class="radio-inline mr-1 font-weight-bold" onclick=setKali(2)>'+c2+'</label>';
 						}
                     }
                     if(i==3){
                         for(var c3=0;c3<=6;c3++){
                             s=s+'<option value='+c3+'>'+c3+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r3" onclick=setKali(2) value="'+c3+'"> '+c3+'</label>';
+							rops=rops+'<input type="radio" name="r3" value="'+c3+'">  <label class="radio-inline mr-1 font-weight-bold" onclick=setKali(2)>'+c3+'</label>';
 						}
                     }
                     if(i==4){
                         for(var c4=0;c4<=11;c4++){
                             s=s+'<option value='+c4+'>'+c4+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r4" onclick=setKali(2) value="'+c4+'"> '+c4+'</label>';
+							rops=rops+'<input type="radio" name="r4" value="'+c4+'">  <label class="radio-inline mr-1 font-weight-bold" onclick=setKali(2)>'+c4+'</label>';
 						}
                     }
 					rops=rops+'</td></tr>';
