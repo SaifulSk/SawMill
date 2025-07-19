@@ -19,7 +19,7 @@
         <!--Container-->
         <div class="container">
             <!-- User Form -->
-            <div class="row">
+            <div class="">
 				<h3 class="m-3">Saw Mill Calculator</h3>
 				<div class="custom-control custom-switch m-3">
 					<input type="checkbox" class="custom-control-input" id="switch1" name="example" onchange=changeView()>
@@ -48,14 +48,14 @@
                     <div class="form-group row">
                         <table class="table table-bordered text-center mt-3" id="tab">
                         </table>
-                        <table class="table table-bordered text-center mt-2" id="tot">
+                        <div><button class="btn btn-dark" id="rst" onclick="reset()">Clear All</button></div>
+                        <button class="btn btn-info ml-2" style="margin-bottom:45px" id="pdf" onclick="save()">Save Pdf</button>
+                        <table class="table table-bordered text-center position-fixed m-0" id="tot" style="bottom:0;width:92%">
                             <tr>
                                 <th class="bg bg-warning">Total</th>
                                 <th class="bg bg-danger text-white font-weight-bolder" style="font-size:20px" id="totv"></th>
 							</tr>
                         </table> 
-                        <button class="btn btn-dark" id="rst" onclick="reset()">Clear All</button>
-                        <button class="btn btn-info ml-2" id="pdf" onclick="save()">Save Pdf</button>
                     </div>
                 </div>
             </div>
