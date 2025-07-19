@@ -565,6 +565,7 @@
                     $("#tab").append('<tr><td class="text-primary font-weight-bold">'+a+'.'+b+' x '+c+'.'+d+'</td><td class="text-success font-weight-bold">'+kv+'</td><td><i class="btn btn-danger btn-sm fa fa-trash" onclick=del(this)></i></td></tr>');
 					calc('add',kv);
 				}
+		    $("#kali").val("0-0-0")
             }
 			const del=(elem)=>{
 				calc('sub',elem.parentNode.parentNode.firstChild.nextSibling.innerHTML);
