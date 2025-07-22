@@ -66,19 +66,61 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.js"></script>
 
         <script>
-			var a,b,c,d,t1=0,t2=0,t3=0,vu=0;
-			const addRemoveClass = (type) => {
-				if(type==1) {
-					$('#submitBtn').addClass('btn-primary');
-					$('#submitBtn').removeClass('btn-danger');
-				} else {
-					$('#submitBtn').removeClass('btn-primary');
-					$('#submitBtn').addClass('btn-danger');
-				}
+		var a,b,c,d,t1=0,t2=0,t3=0,vu=0;
+		function saveState() {
+		    localStorage.setItem('tabHTML', $("#tab").html());
+		    localStorage.setItem('totals', JSON.stringify({t1, t2, t3, vu}));
+		    localStorage.setItem('kali', $("#kali").val());
+		    if (vu === 1) {
+		        for (let i = 1; i <= 4; i++) {
+		            localStorage.setItem('select' + i, $('#' + i).val());
+		        }
+		    } else {
+		        for (let i = 1; i <= 4; i++) {
+		            localStorage.setItem('radio' + i, $("input[name='r" + i + "']:checked").val());
+		        }
+		    }
+		    localStorage.setItem('vu', vu);
+		}
+		
+		function loadState() {
+		    let tabHTML = localStorage.getItem('tabHTML');
+		    if (tabHTML) $("#tab").html(tabHTML);
+		    let totals = JSON.parse(localStorage.getItem('totals') || '{}');
+		    t1 = totals.t1 || 0;
+		    t2 = totals.t2 || 0;
+		    t3 = totals.t3 || 0;
+		    vu = totals.vu || 0;
+		    $('#totv').html(t1 + '-' + t2 + '-' + t3);
+		    let kali = localStorage.getItem('kali');
+		    if (kali) $("#kali").val(kali);
+		    vu = parseInt(localStorage.getItem('vu') || '0');
+		    if (vu) $('#switch1').prop("checked", true);
+		    if (vu === 1) {
+		        for (let i = 1; i <= 4; i++) {
+		            let v = localStorage.getItem('select' + i);
+		            if (v !== null) $('#' + i).val(v);
+		        }
+		    } else {
+		        for (let i = 1; i <= 4; i++) {
+		            let v = localStorage.getItem('radio' + i);
+		            if (v !== null) $("input[name='r" + i + "'][value='" + v + "']").prop("checked", true);
+		        }
+		    }
+		}
+
+		const addRemoveClass = (type) => {
+			if(type==1) {
+				$('#submitBtn').addClass('btn-primary');
+				$('#submitBtn').removeClass('btn-danger');
+			} else {
+				$('#submitBtn').removeClass('btn-primary');
+				$('#submitBtn').addClass('btn-danger');
 			}
+		}
 			const save=()=>{
 				if(!(t1==0 && t2==0 && t3==0)){
 					var doc = new jsPDF('p', 'pt', 'a4');
@@ -116,6 +158,7 @@
 				$("input[name='r2']")[0].checked=true;
 				$("input[name='r3']")[0].checked=true;
 				$("input[name='r4']")[0].checked=true;
+				localStorage.clear();
 			}
             const updown=(i,t)=>{
                 var s="#"+i,lb=0,ub;
@@ -568,6 +611,7 @@
 				var z=arr[a][b/3][c][d][2];
                 $("#kali").val(x+'-'+y+'-'+z);
 		addRemoveClass(1);
+		saveState();
             }
             const addToTab=()=>{
 		window.scrollTo(0,0)
@@ -578,10 +622,12 @@
 				}
 		    $("#kali").val("0-0-0");
 		    addRemoveClass(2);
+		saveState();
             }
 			const del=(elem)=>{
 				calc('sub',elem.parentNode.parentNode.firstChild.nextSibling.innerHTML);
 				elem.parentNode.parentNode.remove();
+		    		saveState();
 			}
 			const calc=(op,val)=>{
 				pos1=val.indexOf('-');
@@ -644,6 +690,7 @@
 				}
 				$("#kali").val('0-0-0');
 				addRemoveClass(2);
+		    		saveState();
 			}
 			$(document).ready(function(){
 				var rops="";
@@ -698,7 +745,8 @@
 					// </table>
                 }
 				$(".radios").append('<table class="table text-center">'+rops+'</table>');
-				reset();
+				// reset();
+				loadState();
             })
             
         </script>
