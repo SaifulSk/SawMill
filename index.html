@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             .alert label {
-		  font-size: 16px  
+		  font-size: 23px  
             }
         </style>
     </head>
@@ -700,29 +700,29 @@
                     $(".up-arrow").append('<div class="col-xs-3 ml-4 mr-4" onclick=updown('+i+',1)><i class="fa fa-arrow-up" style="font-size:24px"></i></div>');
                     $(".down-arrow").append('<div class="col-xs-3 ml-4 mr-4" onclick=updown('+i+',-1)><i class="fa fa-arrow-down" style="font-size:24px"></i></div>');
                     var s="";
-					rops=rops+'<tr class="alert alert-'+((i%2==0)?'success':'warning')+'"><td>';
+					rops=rops+'<tr class="alert alert-'+((i%2==0)?'success':'warning')+'"><td class="px-0 mx-0">';
                     if(i==1){
                         for(var c1=1;c1<=10;c1++){
                             s=s+'<option value='+c1+'>'+c1+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r1" onclick=setKali(2) value="'+c1+'"> '+c1+'</label>';
+							rops=rops+'<label class="radio-inline mr-1 font-weight-bold mb-0"><input type="radio" name="r1" onclick=setKali(2) value="'+c1+'"> '+c1+'</label>';
 						}
                     }
                     if(i==2){
                         for(var c2=0;c2<=9;c2+=3){
                             s=s+'<option value='+c2+'>'+c2+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r2" onclick=setKali(2) value="'+c2+'"> '+c2+'</label>';
+							rops=rops+'<label class="radio-inline mr-1 font-weight-bold mb-0"><input type="radio" name="r2" onclick=setKali(2) value="'+c2+'"> '+c2+'</label>';
 						}
                     }
                     if(i==3){
                         for(var c3=0;c3<=6;c3++){
                             s=s+'<option value='+c3+'>'+c3+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r3" onclick=setKali(2) value="'+c3+'"> '+c3+'</label>';
+							rops=rops+'<label class="radio-inline mr-1 font-weight-bold mb-0"><input type="radio" name="r3" onclick=setKali(2) value="'+c3+'"> '+c3+'</label>';
 						}
                     }
                     if(i==4){
                         for(var c4=0;c4<=11;c4++){
                             s=s+'<option value='+c4+'>'+c4+'</option>';
-							rops=rops+'<label class="radio-inline mr-1 font-weight-bold"><input type="radio" name="r4" onclick=setKali(2) value="'+c4+'"> '+c4+'</label>';
+							rops=rops+'<label class="radio-inline mr-1 font-weight-bold mb-0"><input type="radio" name="r4" onclick=setKali(2) value="'+c4+'"> '+c4+'</label>';
 						}
                     }
 					rops=rops+'</td></tr>';
