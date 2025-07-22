@@ -40,7 +40,7 @@
                                 <input class="form-control font-weight-bold text-danger" type="text" id="kali" disabled/>
                             </div>
                             <div class="col-xs-1">
-                                <button class="btn btn-primary ml-2" id="submitBtn" onclick=addToTab()> Add To Table </button>
+                                <button class="btn btn-danger ml-2" id="submitBtn" onclick=addToTab()> Add To Table </button>
                             </div>
                         </div>
                     </form>
@@ -98,6 +98,8 @@
 				$('.radios').show();
 				$('#switch1').prop("checked", false);
 				$('#kali').val('0-0-0');
+				$('#submitBtn').classList.add('btn-danger');
+				$('#submitBtn').classList.remove('btn-primary');
 				$('#1').val(1);
 				$('#2').val(0);
 				$('#3').val(0);
@@ -557,6 +559,8 @@
 				var y=arr[a][b/3][c][d][1];
 				var z=arr[a][b/3][c][d][2];
                 $("#kali").val(x+'-'+y+'-'+z);
+		$('#submitBtn').classList.remove('btn-danger');
+		$('#submitBtn').classList.add('btn-primary');
             }
             const addToTab=()=>{
 		window.scrollTo(0,0)
@@ -566,6 +570,8 @@
 					calc('add',kv);
 				}
 		    $("#kali").val("0-0-0")
+		    $('#submitBtn').classList.add('btn-danger');
+		    $('#submitBtn').classList.remove('btn-primary');
             }
 			const del=(elem)=>{
 				calc('sub',elem.parentNode.parentNode.firstChild.nextSibling.innerHTML);
@@ -631,6 +637,8 @@
 					$("input[name='r4']")[0].checked=true;
 				}
 				$("#kali").val('0-0-0');
+				$('#submitBtn').classList.add('btn-danger');
+				$('#submitBtn').classList.remove('btn-primary');
 			}
 			$(document).ready(function(){
 				var rops="";
