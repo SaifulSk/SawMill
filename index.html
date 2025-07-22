@@ -71,7 +71,15 @@
             </div>
           </form>
           <!-- Table -->
-          <div class="form-group row">
+          <div
+            class="form-group row"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-bottom: 70px;
+            "
+          >
             <table
               class="table table-bordered text-center mt-3"
               id="tab"
@@ -81,12 +89,7 @@
                 Clear All
               </button>
             </div>
-            <button
-              class="btn btn-info ml-2"
-              style="margin-bottom: 45px"
-              id="pdf"
-              onclick="save()"
-            >
+            <button class="btn btn-info ml-2" id="pdf" onclick="save()">
               Save Pdf
             </button>
             <table
