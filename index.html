@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -40,7 +40,7 @@
                                 <input class="form-control font-weight-bold text-danger" type="text" id="kali" disabled/>
                             </div>
                             <div class="col-xs-1">
-                                <button class="btn btn-primary ml-2" id="submitBtn" onclick=addToTab()> Add To Table </button>
+                                <button class="btn btn-danger ml-2" id="submitBtn" onclick=addToTab()> Add To Table </button>
                             </div>
                         </div>
                     </form>
@@ -70,6 +70,15 @@
 
         <script>
 			var a,b,c,d,t1=0,t2=0,t3=0,vu=0;
+			const addRemoveClass = (type) => {
+				if(type==1) {
+					$('#submitBtn').addClass('btn-primary');
+					$('#submitBtn').removeClass('btn-danger');
+				} else {
+					$('#submitBtn').removeClass('btn-primary');
+					$('#submitBtn').addClass('btn-danger');
+				}
+			}
 			const save=()=>{
 				if(!(t1==0 && t2==0 && t3==0)){
 					var doc = new jsPDF('p', 'pt', 'a4');
@@ -98,6 +107,7 @@
 				$('.radios').show();
 				$('#switch1').prop("checked", false);
 				$('#kali').val('0-0-0');
+				addRemoveClass(2);
 				$('#1').val(1);
 				$('#2').val(0);
 				$('#3').val(0);
@@ -557,6 +567,7 @@
 				var y=arr[a][b/3][c][d][1];
 				var z=arr[a][b/3][c][d][2];
                 $("#kali").val(x+'-'+y+'-'+z);
+		addRemoveClass(1);
             }
             const addToTab=()=>{
 		window.scrollTo(0,0)
@@ -565,7 +576,8 @@
                     $("#tab").append('<tr><td class="text-primary font-weight-bold">'+a+'.'+b+' x '+c+'.'+d+'</td><td class="text-success font-weight-bold">'+kv+'</td><td><i class="btn btn-danger btn-sm fa fa-trash" onclick=del(this)></i></td></tr>');
 					calc('add',kv);
 				}
-		    $("#kali").val("0-0-0")
+		    $("#kali").val("0-0-0");
+		    addRemoveClass(2);
             }
 			const del=(elem)=>{
 				calc('sub',elem.parentNode.parentNode.firstChild.nextSibling.innerHTML);
@@ -631,6 +643,7 @@
 					$("input[name='r4']")[0].checked=true;
 				}
 				$("#kali").val('0-0-0');
+				addRemoveClass(2);
 			}
 			$(document).ready(function(){
 				var rops="";
