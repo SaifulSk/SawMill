@@ -158,7 +158,7 @@
 				$("input[name='r2']")[0].checked=true;
 				$("input[name='r3']")[0].checked=true;
 				$("input[name='r4']")[0].checked=true;
-				localStorage.clear();
+				// localStorage.clear();
 			}
             const updown=(i,t)=>{
                 var s="#"+i,lb=0,ub;
@@ -745,7 +745,7 @@
 					// </table>
                 }
 				$(".radios").append('<table class="table text-center">'+rops+'</table>');
-				// reset();
+				reset();
 				loadState();
             })
             
