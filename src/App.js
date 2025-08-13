@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import KaliCalculator from "./components/SawMillCalculator";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const [paymentStatus, setPaymentStatus] = useState(1); // 0 for not paid, 1 for paid, 2 for pending for admin approval
@@ -20,6 +21,7 @@ const App = () => {
 
   return (
     <>
+      <ToastContainer />
       {paymentStatus == 1 ? (
         <KaliCalculator />
       ) : paymentStatus == 2 ? (

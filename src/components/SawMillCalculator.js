@@ -3,6 +3,7 @@ import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import arr from "../data/calculationArray";
 import radioRows from "./RadioRows";
+import { toast } from "react-toastify";
 
 const SawMillCalculator = () => {
   const initialValues = {
@@ -38,13 +39,19 @@ const SawMillCalculator = () => {
       setKaliValue("0-0-0");
       setRadioValues(initialValues);
       setItemAdded(false);
-
-      localStorage.setItem("tableData", JSON.stringify(newTableData));
+    } else {
+      toast.error("Please enter a valid Kali value.", {
+        autoClose: 5000,
+        closeOnClick: true,
+        theme: "colored",
+      });
     }
   };
 
   const delRow = (index) => {
-    setTableData(tableData.filter((_, i) => i !== index));
+    let newData = tableData.filter((_, i) => i !== index);
+    setTableData(newData);
+    localStorage.setItem("tableData", JSON.stringify(newData));
   };
 
   useEffect(() => {
@@ -54,7 +61,7 @@ const SawMillCalculator = () => {
   }, [radioValues]);
 
   useEffect(() => {
-    if (tableData.length) {
+    if (tableData.length > 0) {
       let t1 = 0,
         t2 = 0,
         t3 = 0;
@@ -69,8 +76,10 @@ const SawMillCalculator = () => {
       t1 += parseInt(t2 / 12);
       t2 %= 12;
       setTotalKali(`${t1}-${t2}-${t3}`);
+      localStorage.setItem("tableData", JSON.stringify(tableData));
     } else {
       setTotalKali("0-0-0");
+      // localStorage.removeItem("tableData");
     }
   }, [tableData]);
 
@@ -104,13 +113,7 @@ const SawMillCalculator = () => {
                 }}
               >
                 <div className="col-xs-1">
-                  <input
-                    className="form-control font-weight-bold text-danger"
-                    type="text"
-                    id="kali"
-                    value={kaliValue}
-                    disabled
-                  />
+                  <div className="kali-box">{kaliValue}</div>
                 </div>
                 <div className="col-xs-1">
                   <button
