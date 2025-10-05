@@ -9,7 +9,7 @@ const SawMillCalculator = () => {
   const initialValues = {
     r10: 1,
     r9: 0,
-    r6: 0,
+    r6: 1,
     r11: 0,
   };
   const [radioValues, setRadioValues] = useState(initialValues);
