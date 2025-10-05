@@ -37,7 +37,7 @@ const SawMillCalculator = () => {
       ];
       setTableData(newTableData);
       setKaliValue("0-0-0");
-      setRadioValues(initialValues);
+      // setRadioValues(initialValues);
       setItemAdded(false);
     } else {
       toast.error("Please enter a valid Kali value.", {
