@@ -17,7 +17,7 @@ const radioRows = (setRadioValues, radioValues) => {
         radioValues={radioValues}
       />
       <RadioBoxes
-        list={[0, 1, 2, 3, 4, 5, 6]}
+        list={[1, 2, 3, 4, 5, 6]}
         color="warning"
         setRadioValues={setRadioValues}
         radioValues={radioValues}
